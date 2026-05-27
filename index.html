@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLACKWIDOW</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    width:100%;
+    height:100vh;
+    background:#000;
+    overflow:hidden;
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* FUNDO */
+
+.bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+
+    background:url("logo.png") center center no-repeat;
+    background-size:700px;
+
+    opacity:0.04;
+
+    filter:
+    drop-shadow(0 0 30px white)
+    drop-shadow(0 0 80px white);
+
+    animation:pulse 6s infinite;
+}
+
+/* GRID */
+
+.grid{
+    position:absolute;
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+    background-size:40px 40px;
+
+    animation:gridMove 10s linear infinite;
+}
+
+/* PARTICULAS */
+
+.particles span{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+
+    animation:float 10s linear infinite;
+}
+
+/* TOPO */
+
+.topbar{
+    position:absolute;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:90%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    z-index:20;
+}
+
+.logoText{
+    color:white;
+
+    font-size:22px;
+
+    letter-spacing:5px;
+
+    text-shadow:
+    0 0 10px white;
+}
+
+.downloadTop{
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:0.3s;
+
+    backdrop-filter:blur(5px);
+}
+
+.downloadTop:hover{
+
+    background:white;
+
+    color:black;
+
+    box-shadow:
+    0 0 20px white;
+}
+
+/* CARD */
+
+.card{
+    position:relative;
+    z-index:10;
+
+    width:90%;
+    max-width:420px;
+
+    background:rgba(0,0,0,0.75);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:28px;
+
+    padding:50px;
+
+    text-align:center;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 40px rgba(255,255,255,0.05),
+    0 0 100px rgba(255,255,255,0.02);
+}
+
+/* TITULO */
+
+h1{
+    color:white;
+
+    font-size:38px;
+
+    letter-spacing:6px;
+
+    margin-bottom:10px;
+
+    text-align:center;
+
+    word-break:break-word;
+
+    text-shadow:
+    0 0 10px white,
+    0 0 25px white;
+}
+
+.subtitle{
+    color:#666;
+
+    letter-spacing:4px;
+
+    margin-bottom:35px;
+}
+
+/* STATUS */
+
+.status{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:35px;
+}
+
+.statusBox{
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    color:#aaa;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+}
+
+/* BOTAO */
+
+.btn{
+    width:100%;
+
+    padding:20px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:white;
+
+    color:black;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 0 20px rgba(255,255,255,0.2);
+}
+
+.btn:hover{
+
+    transform:scale(1.03);
+
+    background:#d9d9d9;
+
+    box-shadow:
+    0 0 25px white,
+    0 0 70px white;
+}
+
+/* INFO */
+
+.info{
+
+    margin-top:30px;
+
+    color:#777;
+
+    line-height:28px;
+
+    letter-spacing:2px;
+
+    font-size:14px;
+}
+
+/* ANIMAÇÕES */
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+        opacity:0.03;
+    }
+
+    50%{
+        transform:scale(1.04);
+        opacity:0.06;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:0.03;
+    }
+
+}
+
+@keyframes gridMove{
+
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(40px);
+    }
+
+}
+
+@keyframes float{
+
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-100vh);
+        opacity:0;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FUNDO -->
+
+<div class="bg"></div>
+
+<div class="grid"></div>
+
+<!-- PARTICULAS -->
+
+<div class="particles">
+    <span style="left:10%; animation-delay:0s;"></span>
+    <span style="left:20%; animation-delay:2s;"></span>
+    <span style="left:35%; animation-delay:4s;"></span>
+    <span style="left:50%; animation-delay:1s;"></span>
+    <span style="left:65%; animation-delay:3s;"></span>
+    <span style="left:80%; animation-delay:5s;"></span>
+    <span style="left:90%; animation-delay:6s;"></span>
+</div>
+
+<!-- TOPO -->
+
+<div class="topbar">
+
+    <div class="logoText">
+        BLACKWIDOW
+    </div>
+
+    <a href="arquivo.zip" download class="downloadTop">
+        QUICK DOWNLOAD
+    </a>
+
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+
+    <h1>BLACKWIDOW</h1>
+
+    <div class="subtitle">
+        CYBER SYSTEM
+    </div>
+
+    <div class="status">
+
+        <div class="statusBox">
+            ONLINE
+        </div>
+
+        <div class="statusBox">
+            ACTIVE
+        </div>
+
+        <div class="statusBox">
+            SECURE
+        </div>
+
+    </div>
+
+    <!-- DOWNLOAD -->
+
+    <a href="arquivo.zip" download>
+        <button class="btn">
+            DOWNLOAD
+        </button>
+    </a>
+
+    <!-- INFO -->
+
+    <div class="info">
+
+        VERSION 1.0<br>
+        PRIVATE SYSTEM<br>
+        ENCRYPTED NETWORK<br>
+        ACCESS GRANTED
+
+    </div>
+
+</div>
+
+</body>
+</html>
