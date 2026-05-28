@@ -334,13 +334,13 @@ body{
     rotate(-25deg);
 }
 
-/* ARANHA */
+/* ARANHA GRANDE */
 
 .spider{
 
     width:120px;
 
-    margin-bottom:15px;
+    margin-bottom:10px;
 
     position:relative;
 
@@ -349,6 +349,34 @@ body{
     filter:
     drop-shadow(0 0 15px red)
     drop-shadow(0 0 40px red);
+}
+
+/* AREA TITULO */
+
+.titleArea{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+/* ARANHA PEQUENA */
+
+.miniSpider{
+
+    width:85px;
+
+    margin-bottom:12px;
+
+    filter:
+    drop-shadow(0 0 10px red)
+    drop-shadow(0 0 25px red);
+
+    animation:spiderPulse 3s infinite;
 }
 
 /* TITULO */
@@ -605,22 +633,32 @@ body{
 
 }
 
+@keyframes spiderPulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- GRID -->
-
 <div class="grid"></div>
-
-<!-- FUNDO -->
 
 <div class="bgSpider"></div>
 
 <div class="overlay"></div>
-
-<!-- PARTICULAS -->
 
 <div class="particles">
 
@@ -633,8 +671,6 @@ body{
 <span style="left:90%; animation-delay:6s;"></span>
 
 </div>
-
-<!-- HUD -->
 
 <div class="hudLeft">
 
@@ -650,25 +686,19 @@ body{
 
 </div>
 
-<!-- TOPO -->
-
 <div class="topbar">
 
 <div class="logoTop">
 BLACKWIDOW
 </div>
 
-<a href="arquivo.zip" download class="quick">
+<a href="BlackWidow.EXE" download class="quick">
 QUICK DOWNLOAD
 </a>
 
 </div>
 
-<!-- CARD -->
-
 <div class="card">
-
-<!-- PATAS -->
 
 <div class="legs leftTop"></div>
 <div class="legs leftMid"></div>
@@ -678,21 +708,19 @@ QUICK DOWNLOAD
 <div class="legs rightMid"></div>
 <div class="legs rightBot"></div>
 
-<!-- ARANHA -->
+<div class="titleArea">
 
-<img src="spider.png" class="spider">
-
-<!-- TITULO -->
+<img src="spider.png" class="miniSpider">
 
 <h1 class="glitch">
 BLACKWIDOW
 </h1>
 
+</div>
+
 <div class="subtitle">
 CYBER SYSTEM
 </div>
-
-<!-- STATUS -->
 
 <div class="status">
 
@@ -710,8 +738,6 @@ CYBER SYSTEM
 
 </div>
 
-<!-- DOWNLOAD -->
-
 <a href="BlackWidow.EXE" download>
 
 <button class="btn">
@@ -719,8 +745,6 @@ DOWNLOAD
 </button>
 
 </a>
-
-<!-- INFO -->
 
 <div class="info">
 
