@@ -1,0 +1,487 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Orbitron', monospace;
+    color: #00ff41;
+    cursor: crosshair;
+}
+
+/* ========================================
+   CANVAS DE TEIAS (FUNDO)
+   ======================================== */
+#webCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ========================================
+   ARANHA CIBERNÉTICA
+   ======================================== */
+.spider-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    animation: spiderPulse 4s ease-in-out infinite;
+}
+
+.spider {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.body {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 60px;
+    height: 50px;
+    background: linear-gradient(135deg, #00ff41, #003300, #00ff41);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 20px #00ff41,
+        0 0 40px #00ff41,
+        0 0 60px #003300,
+        inset 0 0 20px rgba(0, 255, 65, 0.3);
+    animation: bodyGlow 2s ease-in-out infinite alternate;
+}
+
+.eye {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #ff0000;
+    border-radius: 50%;
+    top: 42px;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    animation: eyeGlow 1s ease-in-out infinite alternate;
+}
+
+.eye.left { left: 38px; }
+.eye.right { left: 70px; }
+
+.cyber-eye {
+    position: absolute;
+    top: 38px;
+    left: 52px;
+    width: 16px;
+    height: 10px;
+    background: #ff0000;
+    clip-path: polygon(0% 100%, 25% 0%, 75% 0%, 100% 100%);
+    box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+    animation: cyberEye 0.5s ease-in-out infinite;
+}
+
+.leg {
+    position: absolute;
+    width: 3px;
+    height: 50px;
+    background: linear-gradient(to bottom, #00ff41, #003300);
+    border-radius: 2px;
+    transform-origin: top center;
+}
+
+.l1 { top: 35px; left: 20px; transform: rotate(-30deg); animation: legMove1 1s ease-in-out infinite; }
+.l2 { top: 40px; left: 15px; transform: rotate(-50deg); animation: legMove2 1.2s ease-in-out infinite; }
+.l3 { top: 45px; left: 15px; transform: rotate(-70deg); animation: legMove3 1.4s ease-in-out infinite; }
+.l4 { top: 50px; left: 20px; transform: rotate(-90deg); animation: legMove4 1.6s ease-in-out infinite; }
+.r1 { top: 35px; right: 20px; transform: rotate(30deg); animation: legMove1 1s ease-in-out infinite reverse; }
+.r2 { top: 40px; right: 15px; transform: rotate(50deg); animation: legMove2 1.2s ease-in-out infinite reverse; }
+.r3 { top: 45px; right: 15px; transform: rotate(70deg); animation: legMove3 1.4s ease-in-out infinite reverse; }
+.r4 { top: 50px; right: 20px; transform: rotate(90deg); animation: legMove4 1.6s ease-in-out infinite reverse; }
+
+.spider-shadow {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    width: 80px;
+    height: 20px;
+    background: radial-gradient(ellipse, rgba(0, 255, 65, 0.2), transparent);
+    animation: shadowPulse 2s ease-in-out infinite;
+}
+
+/* ========================================
+   CONTEÚDO PRINCIPAL
+   ======================================== */
+.main-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.glitch-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.glitch {
+    font-family: 'Orbitron', monospace;
+    font-size: 4rem;
+    font-weight: 900;
+    color: #00ff41;
+    text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+    position: relative;
+    animation: glitch 3s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    color: #ff00ff;
+    z-index: -1;
+    animation: glitchOffset 3s infinite;
+}
+
+.glitch::after {
+    color: #00ffff;
+    z-index: -2;
+    animation: glitchOffset2 3s infinite;
+}
+
+.subtitle {
+    margin-bottom: 30px;
+}
+
+.typing-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    color: #0088ff;
+    border-right: 2px solid #0088ff;
+    animation: typing 3s steps(30) infinite, blink 0.5s step-end infinite;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* ========================================
+   DIVISOR
+   ======================================== */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.divider-line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00ff41, transparent);
+}
+
+.divider-icon {
+    font-size: 2rem;
+    animation: spiderIcon 2s ease-in-out infinite;
+}
+
+/* ========================================
+   INFO BOX
+   ======================================== */
+.info-box {
+    text-align: center;
+    padding: 40px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    max-width: 600px;
+    width: 100%;
+}
+
+.hex-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+    padding: 10px;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.hex {
+    border: 1px solid #00ff41;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: hexGlow 3s ease-in-out infinite;
+}
+
+.tagline {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    color: #ff0000;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.description {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    color: #888;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* ========================================
+   BOTÃO CYBERPUNK
+   ======================================== */
+.cyber-button {
+    position: relative;
+    padding: 15px 40px;
+    background: transparent;
+    border: 2px solid #00ff41;
+    color: #00ff41;
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.cyber-button:hover {
+    background: rgba(0, 255, 65, 0.1);
+    box-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+    transform: scale(1.05);
+}
+
+.btn-glitch {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+    animation: btnGlitch 3s infinite;
+}
+
+/* ========================================
+   STATUS BAR
+   ======================================== */
+.status-bar {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    padding: 15px 30px;
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+.status-dot.green {
+    background: #00ff41;
+    box-shadow: 0 0 10px #00ff41;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    color: #333;
+}
+
+.web-pattern {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(0, 255, 65, 0.02) 20px,
+        rgba(0, 255, 65, 0.02) 40px
+    );
+}
+
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ff41, transparent);
+    animation: scanLine 4s linear infinite;
+}
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+@keyframes spiderPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes bodyGlow {
+    0% { box-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41; }
+    100% { box-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41, 0 0 80px #003300; }
+}
+
+@keyframes eyeGlow {
+    0% { box-shadow: 0 0 10px #ff0000; }
+    100% { box-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; }
+}
+
+@keyframes cyberEye {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.3); }
+}
+
+@keyframes legMove1 {
+    0%, 100% { transform: rotate(-30deg); }
+    50% { transform: rotate(-40deg); }
+}
+
+@keyframes legMove2 {
+    0%, 100% { transform: rotate(-50deg); }
+    50% { transform: rotate(-60deg); }
+}
+
+@keyframes legMove3 {
+    0%, 100% { transform: rotate(-70deg); }
+    50% { transform: rotate(-80deg); }
+}
+
+@keyframes legMove4 {
+    0%, 100% { transform: rotate(-90deg); }
+    50% { transform: rotate(-100deg); }
+}
+
+@keyframes shadowPulse {
+    0%, 100% { transform: scaleX(1); opacity: 0.2; }
+    50% { transform: scaleX(0.8); opacity: 0.1; }
+}
+
+@keyframes glitch {
+    2%, 64% { transform: translate(0); }
+    4%, 60% { transform: translate(-2px, 2px); }
+    62% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitchOffset {
+    2%, 64% { transform: translate(0); }
+    4%, 60% { transform: translate(-3px, 0); }
+    62% { transform: translate(3px, 0); }
+}
+
+@keyframes glitchOffset2 {
+    2%, 64% { transform: translate(0); }
+    4%, 60% { transform: translate(0, -3px); }
+    62% { transform: translate(0, 3px); }
+}
+
+@keyframes typing {
+    0% { width: 0; }
+    50% { width: 320px; }
+    90% { width: 320px; }
+    100% { width: 0; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+@keyframes spiderIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes hexGlow {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes btnGlitch {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes scanLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* ========================================
+   RESPONSIVO
+   ======================================== */
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 2.5rem;
+    }
+    
+    .spider-container {
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+    
+    .status-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .info-box {
+        padding: 20px;
+        margin: 0 10px;
+    }
+}
