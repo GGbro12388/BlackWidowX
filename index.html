@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BLACKWIDOW</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -11,105 +14,178 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
+
     width:100%;
     height:100vh;
-    background:#000;
+
     overflow:hidden;
-    position:relative;
+
+    background:#020202;
+
+    font-family:'Orbitron', sans-serif;
 
     display:flex;
     justify-content:center;
     align-items:center;
-}
 
-/* FUNDO */
-
-.bg{
-    position:absolute;
-    width:100%;
-    height:100%;
-
-    background:url("logo.png") center center no-repeat;
-    background-size:700px;
-
-    opacity:0.04;
-
-    filter:
-    drop-shadow(0 0 30px white)
-    drop-shadow(0 0 80px white);
-
-    animation:pulse 6s infinite;
+    position:relative;
 }
 
 /* GRID */
 
 .grid{
+
     position:absolute;
+
     width:100%;
     height:100%;
 
     background:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,0,0,0.03) 1px, transparent 1px);
 
-    background-size:40px 40px;
+    background-size:50px 50px;
 
-    animation:gridMove 10s linear infinite;
+    animation:gridMove 8s linear infinite;
 }
 
-/* PARTICULAS */
+/* FUNDO */
 
-.particles span{
+.bgSpider{
+
     position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
+
+    width:1200px;
+    height:1200px;
+
+    background:url("logo.png") center center no-repeat;
+
+    background-size:contain;
+
+    opacity:0.12;
+
+    filter:
+    drop-shadow(0 0 15px red)
+    drop-shadow(0 0 60px red);
+
+    animation:pulse 5s infinite;
+}
+
+/* OVERLAY */
+
+.overlay{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    background:
+    radial-gradient(circle, transparent 15%, black 90%);
+}
+
+/* HUD */
+
+.hudLeft{
+
+    position:absolute;
+
+    left:35px;
+    top:35%;
+
+    color:#444;
+
+    font-size:14px;
+
+    line-height:28px;
+
+    letter-spacing:4px;
+
+    z-index:2;
+}
+
+.hudRight{
+
+    position:absolute;
+
+    right:35px;
+    top:40%;
+
+    color:#700;
+
+    font-size:14px;
+
+    line-height:28px;
+
+    letter-spacing:4px;
+
+    text-align:right;
+
+    z-index:2;
+}
+
+.dot{
+
+    width:6px;
+    height:6px;
+
+    background:red;
+
     border-radius:50%;
 
-    animation:float 10s linear infinite;
+    display:inline-block;
+
+    margin-right:10px;
+
+    box-shadow:
+    0 0 10px red;
 }
 
 /* TOPO */
 
 .topbar{
+
     position:absolute;
+
     top:20px;
     left:50%;
+
     transform:translateX(-50%);
 
-    width:90%;
+    width:95%;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    z-index:20;
+    z-index:10;
 }
 
-.logoText{
+.logoTop{
+
     color:white;
 
-    font-size:22px;
+    font-size:26px;
 
-    letter-spacing:5px;
+    letter-spacing:10px;
 
     text-shadow:
-    0 0 10px white;
+    0 0 10px white,
+    0 0 25px white;
 }
 
-.downloadTop{
+.quick{
 
-    padding:12px 22px;
+    padding:16px 34px;
 
-    border-radius:12px;
+    border-radius:18px;
 
-    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.2);
 
-    border:1px solid rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.03);
 
     color:white;
 
@@ -117,79 +193,264 @@ body{
 
     transition:0.3s;
 
+    letter-spacing:2px;
+
     backdrop-filter:blur(5px);
 }
 
-.downloadTop:hover{
+.quick:hover{
 
     background:white;
 
     color:black;
 
     box-shadow:
-    0 0 20px white;
+    0 0 20px white,
+    0 0 50px white;
 }
 
 /* CARD */
 
 .card{
+
     position:relative;
-    z-index:10;
+
+    overflow:visible;
+
+    z-index:5;
 
     width:90%;
-    max-width:420px;
+    max-width:540px;
 
-    background:rgba(0,0,0,0.75);
+    padding:55px;
+
+    border-radius:35px;
+
+    background:rgba(0,0,0,0.78);
 
     border:1px solid rgba(255,255,255,0.08);
 
-    border-radius:28px;
-
-    padding:50px;
+    backdrop-filter:blur(10px);
 
     text-align:center;
 
-    backdrop-filter:blur(10px);
-
     box-shadow:
-    0 0 40px rgba(255,255,255,0.05),
-    0 0 100px rgba(255,255,255,0.02);
+    0 0 40px rgba(255,0,0,0.08),
+    0 0 100px rgba(255,0,0,0.05);
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:12px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    border-radius:28px;
+
+    pointer-events:none;
+}
+
+/* PATAS */
+
+.legs{
+
+    position:absolute;
+
+    width:360px;
+    height:3px;
+
+    background:
+    linear-gradient(to right,
+    transparent,
+    rgba(255,255,255,0.15),
+    rgba(255,0,0,0.3));
+
+    transform-origin:right center;
+
+    z-index:1;
+
+    opacity:0.5;
+}
+
+/* ESQUERDA */
+
+.leftTop{
+
+    top:120px;
+    left:-280px;
+
+    transform:
+    rotate(-35deg);
+}
+
+.leftMid{
+
+    top:250px;
+    left:-320px;
+
+    transform:
+    rotate(-10deg);
+}
+
+.leftBot{
+
+    top:380px;
+    left:-280px;
+
+    transform:
+    rotate(25deg);
+}
+
+/* DIREITA */
+
+.rightTop{
+
+    top:120px;
+    right:-280px;
+
+    transform:
+    rotate(35deg);
+}
+
+.rightMid{
+
+    top:250px;
+    right:-320px;
+
+    transform:
+    rotate(10deg);
+}
+
+.rightBot{
+
+    top:380px;
+    right:-280px;
+
+    transform:
+    rotate(-25deg);
+}
+
+/* ARANHA */
+
+.spider{
+
+    width:120px;
+
+    margin-bottom:15px;
+
+    position:relative;
+
+    z-index:5;
+
+    filter:
+    drop-shadow(0 0 15px red)
+    drop-shadow(0 0 40px red);
 }
 
 /* TITULO */
 
-h1{
-    color:white;
+.glitch{
 
-    font-size:38px;
+    font-size:64px;
 
     letter-spacing:6px;
 
-    margin-bottom:10px;
+    color:white;
 
-    text-align:center;
+    font-weight:900;
 
-    word-break:break-word;
+    transform:scaleY(0.9);
+
+    position:relative;
 
     text-shadow:
-    0 0 10px white,
-    0 0 25px white;
+    0 0 8px white,
+    0 0 20px white,
+    0 0 40px rgba(255,255,255,0.5);
+
+    margin-bottom:15px;
 }
 
+.glitch::before{
+
+    content:"BLACKWIDOW";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    to bottom,
+    #ffffff,
+    #999,
+    #fff,
+    #444,
+    #fff
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    opacity:0.35;
+}
+
+/* SUB */
+
 .subtitle{
-    color:#666;
 
-    letter-spacing:4px;
+    position:relative;
 
-    margin-bottom:35px;
+    color:#888;
+
+    letter-spacing:7px;
+
+    margin-bottom:40px;
+}
+
+.subtitle::before,
+.subtitle::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:90px;
+    height:1px;
+
+    background:red;
+
+    top:50%;
+}
+
+.subtitle::before{
+
+    left:10px;
+}
+
+.subtitle::after{
+
+    right:10px;
 }
 
 /* STATUS */
 
 .status{
+
     display:flex;
+
     justify-content:center;
-    gap:12px;
+
+    gap:15px;
 
     flex-wrap:wrap;
 
@@ -198,74 +459,102 @@ h1{
 
 .statusBox{
 
-    padding:10px 16px;
+    padding:12px 20px;
 
-    border-radius:10px;
+    border-radius:14px;
 
-    background:rgba(255,255,255,0.04);
+    background:rgba(255,255,255,0.02);
 
-    border:1px solid rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
 
-    color:#aaa;
+    color:#bbb;
 
     font-size:13px;
 
-    letter-spacing:2px;
+    letter-spacing:3px;
+
+    box-shadow:
+    inset 0 0 10px rgba(255,255,255,0.02);
 }
 
 /* BOTAO */
 
 .btn{
+
     width:100%;
 
-    padding:20px;
+    padding:24px;
 
     border:none;
 
-    border-radius:16px;
+    border-radius:22px;
 
     background:white;
 
     color:black;
 
-    font-size:18px;
+    font-size:22px;
 
     font-weight:bold;
 
-    letter-spacing:3px;
+    letter-spacing:5px;
 
     cursor:pointer;
 
     transition:0.3s;
 
+    font-family:'Orbitron', sans-serif;
+
+    border:2px solid rgba(255,255,255,0.08);
+
     box-shadow:
-    0 0 20px rgba(255,255,255,0.2);
+    0 0 25px rgba(255,255,255,0.3),
+    0 0 60px rgba(255,255,255,0.08);
 }
 
 .btn:hover{
 
     transform:scale(1.03);
 
-    background:#d9d9d9;
+    background:#ddd;
 
     box-shadow:
     0 0 25px white,
-    0 0 70px white;
+    0 0 90px white;
 }
 
 /* INFO */
 
 .info{
 
-    margin-top:30px;
+    margin-top:40px;
 
-    color:#777;
+    color:#666;
 
-    line-height:28px;
+    line-height:36px;
 
-    letter-spacing:2px;
+    letter-spacing:4px;
 
     font-size:14px;
+}
+
+/* PARTICULAS */
+
+.particles span{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation:float 10s linear infinite;
+
+    box-shadow:
+    0 0 10px white;
 }
 
 /* ANIMAÇÕES */
@@ -274,17 +563,14 @@ h1{
 
     0%{
         transform:scale(1);
-        opacity:0.03;
     }
 
     50%{
-        transform:scale(1.04);
-        opacity:0.06;
+        transform:scale(1.03);
     }
 
     100%{
         transform:scale(1);
-        opacity:0.03;
     }
 
 }
@@ -296,7 +582,7 @@ h1{
     }
 
     to{
-        transform:translateY(40px);
+        transform:translateY(50px);
     }
 
 }
@@ -324,35 +610,57 @@ h1{
 
 <body>
 
-<!-- FUNDO -->
-
-<div class="bg"></div>
+<!-- GRID -->
 
 <div class="grid"></div>
+
+<!-- FUNDO -->
+
+<div class="bgSpider"></div>
+
+<div class="overlay"></div>
 
 <!-- PARTICULAS -->
 
 <div class="particles">
-    <span style="left:10%; animation-delay:0s;"></span>
-    <span style="left:20%; animation-delay:2s;"></span>
-    <span style="left:35%; animation-delay:4s;"></span>
-    <span style="left:50%; animation-delay:1s;"></span>
-    <span style="left:65%; animation-delay:3s;"></span>
-    <span style="left:80%; animation-delay:5s;"></span>
-    <span style="left:90%; animation-delay:6s;"></span>
+
+<span style="left:10%; animation-delay:0s;"></span>
+<span style="left:20%; animation-delay:2s;"></span>
+<span style="left:35%; animation-delay:4s;"></span>
+<span style="left:50%; animation-delay:1s;"></span>
+<span style="left:65%; animation-delay:3s;"></span>
+<span style="left:80%; animation-delay:5s;"></span>
+<span style="left:90%; animation-delay:6s;"></span>
+
+</div>
+
+<!-- HUD -->
+
+<div class="hudLeft">
+
+<div><span class="dot"></span>SYSTEM</div>
+<div><span class="dot"></span>ONLINE</div>
+
+</div>
+
+<div class="hudRight">
+
+<div>SECURITY</div>
+<div>LEVEL ████</div>
+
 </div>
 
 <!-- TOPO -->
 
 <div class="topbar">
 
-    <div class="logoText">
-        BLACKWIDOW
-    </div>
+<div class="logoTop">
+BLACKWIDOW
+</div>
 
-    <a href="arquivo.zip" download class="downloadTop">
-        QUICK DOWNLOAD
-    </a>
+<a href="arquivo.zip" download class="quick">
+QUICK DOWNLOAD
+</a>
 
 </div>
 
@@ -360,46 +668,68 @@ h1{
 
 <div class="card">
 
-    <h1>BLACKWIDOW</h1>
+<!-- PATAS -->
 
-    <div class="subtitle">
-        CYBER SYSTEM
-    </div>
+<div class="legs leftTop"></div>
+<div class="legs leftMid"></div>
+<div class="legs leftBot"></div>
 
-    <div class="status">
+<div class="legs rightTop"></div>
+<div class="legs rightMid"></div>
+<div class="legs rightBot"></div>
 
-        <div class="statusBox">
-            ONLINE
-        </div>
+<!-- ARANHA -->
 
-        <div class="statusBox">
-            ACTIVE
-        </div>
+<img src="spider.png" class="spider">
 
-        <div class="statusBox">
-            SECURE
-        </div>
+<!-- TITULO -->
 
-    </div>
+<h1 class="glitch">
+BLACKWIDOW
+</h1>
 
-    <!-- DOWNLOAD -->
+<div class="subtitle">
+CYBER SYSTEM
+</div>
 
-    <a href="BlackWidow.EXE" download>
-        <button class="btn">
-            DOWNLOAD
-        </button>
-    </a>
+<!-- STATUS -->
 
-    <!-- INFO -->
+<div class="status">
 
-    <div class="info">
+<div class="statusBox">
+● ONLINE
+</div>
 
-        VERSION 1.0<br>
-        PRIVATE SYSTEM<br>
-        ENCRYPTED NETWORK<br>
-        ACCESS GRANTED
+<div class="statusBox">
+● ACTIVE
+</div>
 
-    </div>
+<div class="statusBox">
+● SECURE
+</div>
+
+</div>
+
+<!-- DOWNLOAD -->
+
+<a href="BlackWidow.EXE" download>
+
+<button class="btn">
+DOWNLOAD
+</button>
+
+</a>
+
+<!-- INFO -->
+
+<div class="info">
+
+VERSION 1.0<br>
+PRIVATE SYSTEM<br>
+ENCRYPTED NETWORK<br>
+ACCESS GRANTED
+
+</div>
 
 </div>
 
