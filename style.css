@@ -11,7 +11,7 @@ body{
 
     overflow:hidden;
 
-    background:#020202;
+    background:#000;
 
     font-family:'Orbitron', sans-serif;
 
@@ -40,26 +40,28 @@ body{
     animation:gridMove 8s linear infinite;
 }
 
-/* FUNDO */
+/* ARANHA GIGANTE FUNDO */
 
 .bgSpider{
 
     position:absolute;
 
-    width:1200px;
-    height:1200px;
+    width:1400px;
+    height:1400px;
 
     background:url("logo.png") center center no-repeat;
 
     background-size:contain;
 
-    opacity:0.12;
+    opacity:0.28;
 
     filter:
-    drop-shadow(0 0 15px red)
-    drop-shadow(0 0 60px red);
+    drop-shadow(0 0 25px red)
+    drop-shadow(0 0 80px red);
 
     animation:pulse 5s infinite;
+
+    z-index:1;
 }
 
 /* OVERLAY */
@@ -72,53 +74,59 @@ body{
     height:100%;
 
     background:
-    radial-gradient(circle, transparent 15%, black 90%);
+    radial-gradient(circle, transparent 10%, black 95%);
+
+    z-index:2;
 }
 
-/* HUD */
+/* HUD ESQUERDA */
 
 .hudLeft{
 
     position:absolute;
 
     left:35px;
-    top:35%;
+    top:38%;
 
     color:#444;
 
-    font-size:14px;
+    font-size:15px;
 
-    line-height:28px;
+    line-height:35px;
 
-    letter-spacing:4px;
+    letter-spacing:5px;
 
-    z-index:2;
+    z-index:10;
 }
+
+/* HUD DIREITA */
 
 .hudRight{
 
     position:absolute;
 
     right:35px;
-    top:40%;
+    top:42%;
 
-    color:#700;
+    color:red;
 
-    font-size:14px;
+    font-size:15px;
 
-    line-height:28px;
+    line-height:35px;
 
-    letter-spacing:4px;
+    letter-spacing:5px;
 
     text-align:right;
 
-    z-index:2;
+    z-index:10;
 }
+
+/* BOLINHA */
 
 .dot{
 
-    width:6px;
-    height:6px;
+    width:7px;
+    height:7px;
 
     background:red;
 
@@ -129,7 +137,8 @@ body{
     margin-right:10px;
 
     box-shadow:
-    0 0 10px red;
+    0 0 10px red,
+    0 0 25px red;
 }
 
 /* TOPO */
@@ -149,29 +158,34 @@ body{
     justify-content:space-between;
     align-items:center;
 
-    z-index:10;
+    z-index:20;
 }
+
+/* LOGO TOPO */
 
 .logoTop{
 
     color:white;
 
-    font-size:26px;
+    font-size:30px;
 
-    letter-spacing:10px;
+    letter-spacing:12px;
 
     text-shadow:
     0 0 10px white,
-    0 0 25px white;
+    0 0 25px white,
+    0 0 45px white;
 }
+
+/* BOTAO TOPO */
 
 .quick{
 
-    padding:16px 34px;
+    padding:18px 38px;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    border:1px solid rgba(255,255,255,0.2);
+    border:1px solid rgba(255,255,255,0.15);
 
     background:rgba(255,255,255,0.03);
 
@@ -181,9 +195,12 @@ body{
 
     transition:0.3s;
 
-    letter-spacing:2px;
+    letter-spacing:3px;
 
-    backdrop-filter:blur(5px);
+    backdrop-filter:blur(8px);
+
+    box-shadow:
+    0 0 15px rgba(255,255,255,0.05);
 }
 
 .quick:hover{
@@ -194,27 +211,25 @@ body{
 
     box-shadow:
     0 0 20px white,
-    0 0 50px white;
+    0 0 60px white;
 }
 
-/* CARD */
+/* CARD CENTRAL */
 
 .card{
 
     position:relative;
 
-    overflow:visible;
-
-    z-index:5;
+    z-index:15;
 
     width:90%;
-    max-width:540px;
+    max-width:600px;
 
-    padding:55px;
+    padding:60px;
 
-    border-radius:35px;
+    border-radius:40px;
 
-    background:rgba(0,0,0,0.78);
+    background:rgba(0,0,0,0.75);
 
     border:1px solid rgba(255,255,255,0.08);
 
@@ -223,9 +238,13 @@ body{
     text-align:center;
 
     box-shadow:
-    0 0 40px rgba(255,0,0,0.08),
-    0 0 100px rgba(255,0,0,0.05);
+    0 0 50px rgba(255,0,0,0.08),
+    0 0 120px rgba(255,0,0,0.05);
+
+    overflow:hidden;
 }
+
+/* BORDA INTERNA */
 
 .card::before{
 
@@ -235,91 +254,32 @@ body{
 
     inset:12px;
 
-    border:1px solid rgba(255,255,255,0.05);
+    border-radius:30px;
 
-    border-radius:28px;
+    border:1px solid rgba(255,255,255,0.05);
 
     pointer-events:none;
 }
 
-/* PATAS */
+/* LINHAS CYBER */
 
-.legs{
+.card::after{
+
+    content:"";
 
     position:absolute;
 
-    width:360px;
-    height:3px;
+    inset:0;
 
     background:
-    linear-gradient(to right,
-    transparent,
-    rgba(255,255,255,0.15),
-    rgba(255,0,0,0.3));
+    linear-gradient(45deg,
+    transparent 40%,
+    rgba(255,0,0,0.05) 50%,
+    transparent 60%);
 
-    transform-origin:right center;
+    animation:scan 6s linear infinite;
 
-    z-index:1;
-
-    opacity:0.5;
-}
-
-/* ESQUERDA */
-
-.leftTop{
-
-    top:120px;
-    left:-280px;
-
-    transform:
-    rotate(-35deg);
-}
-
-.leftMid{
-
-    top:250px;
-    left:-320px;
-
-    transform:
-    rotate(-10deg);
-}
-
-.leftBot{
-
-    top:380px;
-    left:-280px;
-
-    transform:
-    rotate(25deg);
-}
-
-/* DIREITA */
-
-.rightTop{
-
-    top:120px;
-    right:-280px;
-
-    transform:
-    rotate(35deg);
-}
-
-.rightMid{
-
-    top:250px;
-    right:-320px;
-
-    transform:
-    rotate(10deg);
-}
-
-.rightBot{
-
-    top:380px;
-    right:-280px;
-
-    transform:
-    rotate(-25deg);
+    pointer-events:none;
 }
 
 /* AREA TITULO */
@@ -333,19 +293,23 @@ body{
     align-items:center;
 
     justify-content:center;
+
+    position:relative;
+
+    z-index:5;
 }
 
 /* MINI ARANHA */
 
 .miniSpider{
 
-    width:95px;
+    width:130px;
 
     margin-bottom:15px;
 
     filter:
-    drop-shadow(0 0 10px red)
-    drop-shadow(0 0 30px red);
+    drop-shadow(0 0 15px red)
+    drop-shadow(0 0 35px red);
 
     animation:spiderPulse 3s infinite;
 }
@@ -354,7 +318,7 @@ body{
 
 .glitch{
 
-    font-size:64px;
+    font-size:78px;
 
     letter-spacing:6px;
 
@@ -362,58 +326,31 @@ body{
 
     font-weight:900;
 
-    transform:scaleY(0.9);
+    line-height:0.9;
 
     position:relative;
 
     text-shadow:
-    0 0 8px white,
-    0 0 20px white,
-    0 0 40px rgba(255,255,255,0.5);
+    0 0 10px white,
+    0 0 30px white,
+    0 0 60px white;
 
-    margin-bottom:15px;
-}
-
-.glitch::before{
-
-    content:"BLACKWIDOW";
-
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:100%;
-    height:100%;
-
-    background:
-    linear-gradient(
-    to bottom,
-    #ffffff,
-    #999,
-    #fff,
-    #444,
-    #fff
-    );
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-    opacity:0.35;
+    margin-bottom:20px;
 }
 
 /* SUB */
 
 .subtitle{
 
-    position:relative;
-
     color:#888;
 
-    letter-spacing:7px;
+    letter-spacing:8px;
 
-    margin-bottom:40px;
+    margin-bottom:45px;
+
+    font-size:20px;
+
+    position:relative;
 }
 
 .subtitle::before,
@@ -423,7 +360,7 @@ body{
 
     position:absolute;
 
-    width:90px;
+    width:120px;
     height:1px;
 
     background:red;
@@ -433,12 +370,12 @@ body{
 
 .subtitle::before{
 
-    left:10px;
+    left:-140px;
 }
 
 .subtitle::after{
 
-    right:10px;
+    right:-140px;
 }
 
 /* STATUS */
@@ -449,54 +386,54 @@ body{
 
     justify-content:center;
 
-    gap:15px;
+    gap:18px;
 
     flex-wrap:wrap;
 
-    margin-bottom:35px;
+    margin-bottom:40px;
 }
 
 .statusBox{
 
-    padding:12px 20px;
+    padding:14px 22px;
 
-    border-radius:14px;
+    border-radius:16px;
 
     background:rgba(255,255,255,0.02);
 
     border:1px solid rgba(255,255,255,0.08);
 
-    color:#bbb;
+    color:#ccc;
 
-    font-size:13px;
+    font-size:15px;
 
     letter-spacing:3px;
 
     box-shadow:
-    inset 0 0 10px rgba(255,255,255,0.02);
+    inset 0 0 10px rgba(255,255,255,0.03);
 }
 
-/* BOTAO */
+/* BOTAO DOWNLOAD */
 
 .btn{
 
     width:100%;
 
-    padding:24px;
+    padding:26px;
 
     border:none;
 
-    border-radius:22px;
+    border-radius:25px;
 
     background:white;
 
     color:black;
 
-    font-size:22px;
+    font-size:28px;
 
     font-weight:bold;
 
-    letter-spacing:5px;
+    letter-spacing:7px;
 
     cursor:pointer;
 
@@ -504,37 +441,35 @@ body{
 
     font-family:'Orbitron', sans-serif;
 
-    border:2px solid rgba(255,255,255,0.08);
-
     box-shadow:
-    0 0 25px rgba(255,255,255,0.3),
-    0 0 60px rgba(255,255,255,0.08);
+    0 0 30px rgba(255,255,255,0.4),
+    0 0 90px rgba(255,255,255,0.15);
 }
 
 .btn:hover{
 
     transform:scale(1.03);
 
-    background:#ddd;
+    background:#eee;
 
     box-shadow:
-    0 0 25px white,
-    0 0 90px white;
+    0 0 30px white,
+    0 0 120px white;
 }
 
 /* INFO */
 
 .info{
 
-    margin-top:40px;
+    margin-top:45px;
 
     color:#666;
 
-    line-height:36px;
+    line-height:40px;
 
-    letter-spacing:4px;
+    letter-spacing:5px;
 
-    font-size:14px;
+    font-size:16px;
 }
 
 /* PARTICULAS */
@@ -574,6 +509,22 @@ body{
 
 }
 
+@keyframes spiderPulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
 @keyframes gridMove{
 
     from{
@@ -604,18 +555,14 @@ body{
 
 }
 
-@keyframes spiderPulse{
+@keyframes scan{
 
-    0%{
-        transform:scale(1);
+    from{
+        transform:translateX(-100%);
     }
 
-    50%{
-        transform:scale(1.08);
-    }
-
-    100%{
-        transform:scale(1);
+    to{
+        transform:translateX(100%);
     }
 
 }
