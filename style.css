@@ -40,7 +40,7 @@ body{
     animation:gridMove 8s linear infinite;
 }
 
-/* ARANHA GIGANTE FUNDO */
+/* FUNDO */
 
 .bgSpider{
 
@@ -49,17 +49,9 @@ body{
     width:1400px;
     height:1400px;
 
-    background:url("logo.png") center center no-repeat;
+    background:none;
 
-    background-size:contain;
-
-    opacity:0.28;
-
-    filter:
-    drop-shadow(0 0 25px red)
-    drop-shadow(0 0 80px red);
-
-    animation:pulse 5s infinite;
+    opacity:0.20;
 
     z-index:1;
 }
@@ -79,7 +71,7 @@ body{
     z-index:2;
 }
 
-/* HUD ESQUERDA */
+/* HUD */
 
 .hudLeft{
 
@@ -98,8 +90,6 @@ body{
 
     z-index:10;
 }
-
-/* HUD DIREITA */
 
 .hudRight{
 
@@ -120,8 +110,6 @@ body{
 
     z-index:10;
 }
-
-/* BOLINHA */
 
 .dot{
 
@@ -161,8 +149,6 @@ body{
     z-index:20;
 }
 
-/* LOGO TOPO */
-
 .logoTop{
 
     color:white;
@@ -176,8 +162,6 @@ body{
     0 0 25px white,
     0 0 45px white;
 }
-
-/* BOTAO TOPO */
 
 .quick{
 
@@ -214,7 +198,7 @@ body{
     0 0 60px white;
 }
 
-/* CARD CENTRAL */
+/* CARD */
 
 .card{
 
@@ -244,8 +228,6 @@ body{
     overflow:hidden;
 }
 
-/* BORDA INTERNA */
-
 .card::before{
 
     content:"";
@@ -257,27 +239,6 @@ body{
     border-radius:30px;
 
     border:1px solid rgba(255,255,255,0.05);
-
-    pointer-events:none;
-}
-
-/* LINHAS CYBER */
-
-.card::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-    linear-gradient(45deg,
-    transparent 40%,
-    rgba(255,0,0,0.05) 50%,
-    transparent 60%);
-
-    animation:scan 6s linear infinite;
 
     pointer-events:none;
 }
@@ -306,6 +267,8 @@ body{
     width:130px;
 
     margin-bottom:15px;
+
+    object-fit:contain;
 
     filter:
     drop-shadow(0 0 15px red)
@@ -338,7 +301,7 @@ body{
     margin-bottom:20px;
 }
 
-/* SUB */
+/* SUBTITULO */
 
 .subtitle{
 
@@ -413,7 +376,7 @@ body{
     inset 0 0 10px rgba(255,255,255,0.03);
 }
 
-/* BOTAO DOWNLOAD */
+/* BOTAO */
 
 .btn{
 
@@ -551,18 +514,6 @@ body{
     to{
         transform:translateY(-100vh);
         opacity:0;
-    }
-
-}
-
-@keyframes scan{
-
-    from{
-        transform:translateX(-100%);
-    }
-
-    to{
-        transform:translateX(100%);
     }
 
 }
